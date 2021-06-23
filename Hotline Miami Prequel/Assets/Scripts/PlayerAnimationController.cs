@@ -38,13 +38,16 @@ public class PlayerAnimationController : MonoBehaviour
         // Professor: Inverts so that movement is world direction based, not local to character rotation.
         Vector3 animationDirection = transform.InverseTransformDirection(stickDirection);
 
+
+        // Pass direct values if threshold is passed for either dash direction.
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            /*
             if (animationDirection.z >= 0 && )
             {
 
             }
-            anim.Play("Standing Dodge Backward");
+            anim.Play("Standing Dodge Backward");*/
         }
         else
         {  
