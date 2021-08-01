@@ -16,6 +16,7 @@ public class Pawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             anim.SetBool("isShifting", true);
@@ -25,6 +26,6 @@ public class Pawn : MonoBehaviour
         {
             anim.SetBool("isShifting", false);
 
-        }
+        }*/
     }
 }

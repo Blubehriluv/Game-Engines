@@ -40,15 +40,39 @@ public class PlayerAnimationController : MonoBehaviour
 
 
         // Pass direct values if threshold is passed for either dash direction.
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            /*
-            if (animationDirection.z >= 0 && )
+            anim.SetBool("isShifting", true);
+            if (Mathf.Abs(animationDirection.x) == 1)
             {
-
+                if (animationDirection.x == -1)
+                {
+                    anim.SetFloat("Right", 1 * speed);
+                }
+                else if (animationDirection.x == 1)
+                {
+                    anim.SetFloat("Right", -1 * speed);
+                }
             }
-            anim.Play("Standing Dodge Backward");*/
+            else if (Mathf.Abs(animationDirection.z) == 1)
+            {
+                if (animationDirection.z == -1)
+                {
+                    anim.SetFloat("Forward", 1 * speed);
+                }
+                else if (animationDirection.z == 1)
+                {
+                    anim.SetFloat("Forward", 1 * speed);
+                }
+            }
+            
         }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            anim.SetBool("isShifting", false);
+
+        }
+
         else
         {  
             // Animator is told to use input from the multiple directions (floats).
@@ -57,5 +81,15 @@ public class PlayerAnimationController : MonoBehaviour
         }
         
 
+    }
+
+    private IEnumerator ToMoveAndAnimate(float waitTime, string direction, int directionValue, float directionSpeed)
+    {
+        float speedHold = directionSpeed;
+        speed = 0;
+
+        yield return new WaitForSeconds(waitTime);
+
+        speed = speedHold;
     }
 }
