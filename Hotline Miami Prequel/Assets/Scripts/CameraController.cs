@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public Camera playerCamera;
     public float turnSpeed = 180;
     [SerializeField] private float distance;
+    [SerializeField] private float cameraX, cameraZ;
 
     void Start()
     {
@@ -16,9 +17,15 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         RotateToMousePointer();
+        CameraFollow();
     }
 
-    public void RotateToMousePointer()
+    public void CameraFollow()
+    {
+        playerCamera.transform.position = Vector3.MoveTowards(gameObject.transform.localPosition, new Vector3(gameObject.transform.localPosition.x, cameraX, gameObject.transform.localPosition.z), cameraZ);
+    }
+
+    private void RotateToMousePointer()
     {
         // Acquire the plane
         Plane groundPlane = new Plane(Vector3.up, transform.position);
@@ -34,12 +41,12 @@ public class CameraController : MonoBehaviour
     }
 
     // Rotates the character towards the mouse cursor.
-    public void RotateTowards(Vector3 lookAtPoint)
+    private void RotateTowards(Vector3 lookAtPoint)
     {
         // Acquires rotation to be used for looking where we want.
         Quaternion goalRotation = Quaternion.LookRotation(lookAtPoint - transform.position, Vector3.up);
 
         // Will rotate less than the given TurnSpeed towards the goal.
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, turnSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, turnSpeed * Time.deltaTime * 2);
     }
 }

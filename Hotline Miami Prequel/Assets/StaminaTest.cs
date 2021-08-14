@@ -5,45 +5,97 @@ using UnityEngine.UI;
 
 public class StaminaTest : MonoBehaviour
 {
-    public Slider fillBar;
-    public Slider fillBar2;
-    public float stam;
-    private float staminaUse = 15;
+    [SerializeField] private float maxStamina = 200;
+    [SerializeField] private float staminaUse = 100;
+    [SerializeField] private float staminaRechargeRate = 35;
+    [SerializeField] private float invulnerabilityTime = 3.0f;
+    private bool justUsedStamina = false;
 
-    // Start is called before the first frame update
+    public GameObject skinRender;
+    public GameObject circleMesh;
+
+    public GameObject particles;
+
+    // Bars for the stamina
+    public Slider leftFillBar;
+    public Slider rightFillBar;
+
     void Start()
     {
-        stam = 200;
-        fillBar.maxValue = stam;
-        fillBar.value = stam;
+        // Fill bars are set to contain the maximum stamina amount
+        leftFillBar.maxValue = maxStamina;
+        leftFillBar.value = maxStamina;
 
-        fillBar2.maxValue = stam;
-        fillBar2.value = stam;
+        rightFillBar.maxValue = maxStamina;
+        rightFillBar.value = maxStamina;
+
+        // Grabs the MeshRenderer component from the player
+        skinRender.GetComponent<MeshRenderer>();
+        circleMesh.GetComponent<MeshRenderer>();
+        circleMesh.SetActive(false);
+        ParticleSystem ps = particles.GetComponent<ParticleSystem>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (fillBar2.value != fillBar2.maxValue && fillBar.value != fillBar.maxValue)
+        // If the fill bars aren't full, allow them to recharge.
+        if (rightFillBar.value != rightFillBar.maxValue && leftFillBar.value != leftFillBar.maxValue)
         {
-            fillBar.value += 15 * Time.deltaTime;
-            fillBar2.value += 15 * Time.deltaTime;
+            leftFillBar.value += staminaRechargeRate * Time.deltaTime;
+            rightFillBar.value += staminaRechargeRate * Time.deltaTime;
         }
-
+        // If the player is pressing Shift, remove some stamina
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            fillBar.value -= 30;
-            fillBar2.value -= 30;
+            UseStamina(staminaUse);
         }
-        
-        
-
     }
 
-
-    void UseStamina()
+    // This removes the stamina from the fill bars
+    void UseStamina(float useThisMuch)
     {
-        stam -= staminaUse;
-        //fillBar.value
+        ParticleSystem ps = particles.GetComponent<ParticleSystem>();
+        if (justUsedStamina)
+        {
+            Debug.Log("Maybe play a sound here or something.");
+        }
+        else if (!justUsedStamina)
+        {
+            if (leftFillBar.value > staminaUse)
+            {
+                leftFillBar.value -= staminaUse;
+                rightFillBar.value -= staminaUse;
+                skinRender.SetActive(false);
+                circleMesh.SetActive(true);
+                justUsedStamina = true;
+                ps.Play();
+                StartCoroutine(nameof(Wait));
+            }
+            else if (leftFillBar.value < staminaUse)
+            {
+                Debug.Log("You can't use this yet.");
+            }
+        }
+    }
+
+    void PlayParticles(ParticleSystem part)
+    {
+        particles.GetComponent<ParticleSystem>();
+        part.Play();
+    }
+
+    void ReenableMesh()
+    {
+        circleMesh.SetActive(false);
+        skinRender.SetActive(true);
+        justUsedStamina = false;
+    }
+
+    IEnumerator Wait()
+    {
+        Debug.Log("Invulnerable.");
+        yield return new WaitForSeconds(invulnerabilityTime);
+        Debug.Log("Reenable mesh.");
+        ReenableMesh();
     }
 }
