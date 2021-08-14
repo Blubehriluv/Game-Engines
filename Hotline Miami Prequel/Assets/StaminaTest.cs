@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class StaminaTest : MonoBehaviour
 {
-    [SerializeField] private float maxStamina = 200;
-    [SerializeField] private float staminaUse = 100;
-    [SerializeField] private float staminaRechargeRate = 35;
-    [SerializeField] private float invulnerabilityTime = 3.0f;
-    private bool justUsedStamina = false;
+    [SerializeField] float maxStamina = 200;
+    [SerializeField] float staminaUse = 100;
+    [SerializeField] float staminaRechargeRate = 35;
+    [SerializeField] float invulnerabilityTime = 3.0f;
+    bool justUsedStamina = false;
 
     public GameObject skinRender;
     public GameObject circleMesh;
-
     public GameObject particles;
 
     // Bars for the stamina
@@ -25,7 +24,6 @@ public class StaminaTest : MonoBehaviour
         // Fill bars are set to contain the maximum stamina amount
         leftFillBar.maxValue = maxStamina;
         leftFillBar.value = maxStamina;
-
         rightFillBar.maxValue = maxStamina;
         rightFillBar.value = maxStamina;
 
@@ -33,6 +31,8 @@ public class StaminaTest : MonoBehaviour
         skinRender.GetComponent<MeshRenderer>();
         circleMesh.GetComponent<MeshRenderer>();
         circleMesh.SetActive(false);
+        
+        // Implementing the particle system 
         ParticleSystem ps = particles.GetComponent<ParticleSystem>();
     }
 
@@ -78,12 +78,14 @@ public class StaminaTest : MonoBehaviour
         }
     }
 
+    // Grabs Particle System and plays the animation when called.
     void PlayParticles(ParticleSystem part)
     {
         particles.GetComponent<ParticleSystem>();
         part.Play();
     }
 
+    // This reenables the normal mesh and gets rid of the circle mesh.
     void ReenableMesh()
     {
         circleMesh.SetActive(false);
@@ -91,6 +93,7 @@ public class StaminaTest : MonoBehaviour
         justUsedStamina = false;
     }
 
+    // IEnumerator to make the game wait before changing meshes.
     IEnumerator Wait()
     {
         Debug.Log("Invulnerable.");
