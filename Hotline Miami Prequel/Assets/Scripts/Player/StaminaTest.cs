@@ -32,8 +32,6 @@ public class StaminaTest : MonoBehaviour
         circleMesh.GetComponent<MeshRenderer>();
         circleMesh.SetActive(false);
         
-        // Implementing the particle system 
-        ParticleSystem ps = particles.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -57,6 +55,7 @@ public class StaminaTest : MonoBehaviour
         ParticleSystem ps = particles.GetComponent<ParticleSystem>();
         if (justUsedStamina)
         {
+            //TODO: Add sound.
             Debug.Log("Maybe play a sound here or something.");
         }
         else if (!justUsedStamina)

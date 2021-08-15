@@ -22,7 +22,8 @@ public class CameraController : MonoBehaviour
 
     public void CameraFollow()
     {
-        playerCamera.transform.position = Vector3.MoveTowards(gameObject.transform.localPosition, new Vector3(gameObject.transform.localPosition.x, cameraX, gameObject.transform.localPosition.z), cameraZ);
+        playerCamera.transform.position = Vector3.MoveTowards(gameObject.transform.localPosition, new Vector3
+            (gameObject.transform.localPosition.x, cameraX, gameObject.transform.localPosition.z), cameraZ);
     }
 
     private void RotateToMousePointer()
@@ -38,6 +39,10 @@ public class CameraController : MonoBehaviour
 
         // Calls the RotateTowards function
         RotateTowards(targetPoint);
+
+        Vector3 relative;
+        relative = transform.InverseTransformDirection(Vector3.forward);
+        // Debug.Log(relative);
     }
 
     // Rotates the character towards the mouse cursor.

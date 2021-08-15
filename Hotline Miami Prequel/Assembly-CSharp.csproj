@@ -69,13 +69,15 @@
     <Compile Include="Assets\Art\Unity Assets\PinwheelFantasyEffect\Script\Fireball.cs" />
     <Compile Include="Assets\Art\Unity Assets\PinwheelFantasyEffect\Script\Spin.cs" />
     <Compile Include="Assets\Art\Unity Assets\PinwheelFantasyEffect\Script\Test.cs" />
-    <Compile Include="Assets\DodgeMove.cs" />
-    <Compile Include="Assets\Scripts\AIController.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\AIController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\DodgeMove.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
-    <Compile Include="Assets\Scripts\PlayerAnimationController.cs" />
-    <Compile Include="Assets\Shifting.cs" />
-    <Compile Include="Assets\StaminaTest.cs" />
+    <Compile Include="Assets\Scripts\Player\ItemPickup.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\Player\StaminaTest.cs" />
+    <Compile Include="Assets\Scripts\Shifting.cs" />
     <None Include="Assets\Art\Unity Assets\PinwheelFantasyEffect\README.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/taymcken/Documents/GitHub/Game-Engines/Hotline Miami Prequel/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
