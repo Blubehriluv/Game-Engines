@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class StaminaTest : MonoBehaviour
 {
-    [SerializeField] float maxStamina = 200;
-    [SerializeField] float staminaUse = 100;
-    [SerializeField] float staminaRechargeRate = 35;
-    [SerializeField] float invulnerabilityTime = 3.0f;
+    [Header("Stamina Variables")]
+    [SerializeField, Tooltip("The maximum amount of stamina possible to have.")] float maxStamina = 200;
+    [SerializeField, Tooltip("The amount of stamina to be consumed when used.")] float staminaUse = 100;
+    [SerializeField, Tooltip("The amount of stamina that recharges incrimentally over time.")] float staminaRechargeRate = 35;
+    [SerializeField, Tooltip("The amount of time the player is invulnerable.")] float invulnerabilityTime = 3.0f;
     bool justUsedStamina = false;
 
+    [Header("Object Holders")]
     public GameObject skinRender;
     public GameObject circleMesh;
     public GameObject particles;
@@ -80,6 +82,7 @@ public class StaminaTest : MonoBehaviour
     // Grabs Particle System and plays the animation when called.
     void PlayParticles(ParticleSystem part)
     {
+        // TODO: Make the animation length match the invulnerability time.
         particles.GetComponent<ParticleSystem>();
         part.Play();
     }

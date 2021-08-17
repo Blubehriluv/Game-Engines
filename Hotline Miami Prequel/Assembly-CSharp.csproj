@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Controllers\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\DodgeMove.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
+    <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\StaminaTest.cs" />
