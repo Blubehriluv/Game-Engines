@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public Weapon weapon;
+    public Weapon pistol;
     public Transform attachmentPoint;
     bool isShifting;
     Animator anim;
@@ -13,22 +14,18 @@ public class Pawn : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         EquipWeapon(weapon);
+        ChangeLayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            anim.SetBool("isShifting", true);
+       
+    }
 
-        }
-        else 
-        {
-            anim.SetBool("isShifting", false);
-
-        }*/
+    public void ChangeLayer()
+    {
+        anim.SetLayerWeight(0, 1);
     }
 
     public void EquipWeapon(Weapon weapon)
