@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\StaminaTest.cs" />
     <Compile Include="Assets\Scripts\Shifting.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>P:/Github/Game-Engines/Hotline Miami Prequel/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
