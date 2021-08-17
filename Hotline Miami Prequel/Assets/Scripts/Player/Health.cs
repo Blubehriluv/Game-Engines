@@ -12,7 +12,6 @@ public class Health : MonoBehaviour
 
     [SerializeField, Tooltip("")] float bossBulletDamage;
     [SerializeField, Tooltip("")] float enemyBulletDamage;
-    [SerializeField, Tooltip("")] float playerBulletDamage;
     [SerializeField, Tooltip("")] float generalDamage;
 
     public UnityEvent OnDie;
@@ -40,11 +39,6 @@ public class Health : MonoBehaviour
         {
             Debug.Log("Damage source: Enemy");
             SetHealth("damage", enemyBulletDamage);
-        }
-        else if (damageType == "playerBullet")
-        {
-            Debug.Log("Damage source: Player");
-            SetHealth("damage", playerBulletDamage);
         }
         else
         {
