@@ -33,7 +33,6 @@ public class StaminaTest : MonoBehaviour
         skinRender.GetComponent<MeshRenderer>();
         circleMesh.GetComponent<MeshRenderer>();
         circleMesh.SetActive(false);
-        
     }
 
     void Update()

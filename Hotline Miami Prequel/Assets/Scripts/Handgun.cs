@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rifle : Weapon
+public class Handgun : Weapon
 {
-    private Rifle thisRifle;
+    private Handgun thisHandgun;
     private WeaponAnimationType animationType;
     bool isEntered = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        animationType = WeaponAnimationType.Rifle;
-        thisRifle = this;
+        animationType = WeaponAnimationType.Handgun;
+        thisHandgun = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -26,14 +26,17 @@ public class Rifle : Weapon
         if (isEntered == false)
         {
             isEntered = true;
+            other.GetComponent<Pawn>().EquipWeapon(thisHandgun, animationType);
             //other.GetComponent<Pawn>().AnimChange(animationType);
-            other.GetComponent<Pawn>().EquipWeapon(thisRifle, animationType);
-            DestroyRifle();
+            DestroyHandgun();
         }
+        
     }
 
-    public void DestroyRifle()
+    public void DestroyHandgun()
     {
         Destroy(transform.parent.gameObject);
     }
+
+
 }
