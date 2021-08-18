@@ -14,18 +14,31 @@ public class Pawn : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         EquipWeapon(weapon);
-        ChangeLayer();
+        //ChangeLayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (Input.GetKey(KeyCode.O)){
+            Debug.Log("Pressed O for Roifle");
+            HoldRifle();
+        }
+        else if (Input.GetKey(KeyCode.P)){
+            Debug.Log("Pressed P for peestol");
+            HoldPeestol();
+        }
     }
 
-    public void ChangeLayer()
+    public void HoldPeestol()
     {
-        anim.SetLayerWeight(0, 1);
+        anim.SetLayerWeight(1, 1);
+
+    }
+
+    public void HoldRifle()
+    {
+        anim.SetLayerWeight(2, 1);
     }
 
     public void EquipWeapon(Weapon weapon)
