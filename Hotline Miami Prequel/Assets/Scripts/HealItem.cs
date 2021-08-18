@@ -23,7 +23,7 @@ public class HealItem : ItemPickup
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("attempted head");
+        Debug.Log("attempted heal");
         if (other.gameObject.GetComponent<Health>() != null){
             other.gameObject.GetComponent<Health>().SetHealth("heal", 20);
 

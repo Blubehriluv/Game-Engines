@@ -2,68 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Pawn : MonoBehaviour
 {
     public Weapon weapon;
-    public Weapon rifle;
-    public Weapon pistol;
     public Transform attachmentPoint;
-    bool isShifting;
+    public AudioSource unequipSound;
     Animator anim;
+
     void Start()
     {
         anim = GetComponent<Animator>();
-        EquipWeapon(rifle);
-        //ChangeLayer();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.O)){
-            Debug.Log("Pressed O for Roifle");
-            HoldRifle();
-        }
-        else if (Input.GetKey(KeyCode.P)){
-            Debug.Log("Pressed P for peestol");
-            HoldPeestol();
-        }
-        else if (Input.GetKey(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("U for unequip");
-            Unequip();
+            AnimChange(Weapon.WeaponAnimationType.None);
         }
     }
 
-    public void HoldPeestol()
+    public void AnimChange(Weapon.WeaponAnimationType WeaponType)
     {
-        anim.SetLayerWeight(1, 1.0f);
-        anim.SetLayerWeight(2, 0.0f);
-
-    }
-
-    public void HoldRifle()
-    {
-        anim.SetLayerWeight(2, 1.0f);
-        anim.SetLayerWeight(1, 0.0f);
+        unequipSound.GetComponent<AudioSource>();
+        if (WeaponType == Weapon.WeaponAnimationType.None)
+        {
+            Unequip();
+            anim.SetLayerWeight(1, 0.0f);
+            anim.SetLayerWeight(2, 0.0f);
+            unequipSound.Play();
+        }
+        else if (WeaponType == Weapon.WeaponAnimationType.Handgun)
+        {
+            anim.SetLayerWeight(1, 1.0f);
+            anim.SetLayerWeight(2, 0.0f);
+        }
+        else if (WeaponType == Weapon.WeaponAnimationType.Rifle)
+        {
+            anim.SetLayerWeight(2, 1.0f);
+            anim.SetLayerWeight(1, 0.0f);
+        }
     }
 
     public void EquipWeapon(Weapon weapon)
     {
-        weapon = Instantiate(weapon) as Weapon;
+        weapon = Instantiate(weapon);        
         weapon.transform.SetParent(gameObject.transform);
         weapon.transform.localPosition = attachmentPoint.transform.localPosition;
         weapon.transform.localRotation = attachmentPoint.transform.localRotation;
-
+        this.weapon = weapon;
+        
     }
 
     public void Unequip()
     {
         if (weapon)
         {
-            DestroyImmediate(weapon, true);
-            weapon = null;
+            Destroy(weapon.gameObject);
         }
     }
 }
