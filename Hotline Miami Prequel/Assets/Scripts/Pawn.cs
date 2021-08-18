@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public Weapon weapon;
+    public Weapon rifle;
     public Weapon pistol;
     public Transform attachmentPoint;
     bool isShifting;
@@ -13,7 +14,7 @@ public class Pawn : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        EquipWeapon(weapon);
+        EquipWeapon(rifle);
         //ChangeLayer();
     }
 
@@ -28,17 +29,24 @@ public class Pawn : MonoBehaviour
             Debug.Log("Pressed P for peestol");
             HoldPeestol();
         }
+        else if (Input.GetKey(KeyCode.U))
+        {
+            Debug.Log("U for unequip");
+            Unequip();
+        }
     }
 
     public void HoldPeestol()
     {
-        anim.SetLayerWeight(1, 1);
+        anim.SetLayerWeight(1, 1.0f);
+        anim.SetLayerWeight(2, 0.0f);
 
     }
 
     public void HoldRifle()
     {
-        anim.SetLayerWeight(2, 1);
+        anim.SetLayerWeight(2, 1.0f);
+        anim.SetLayerWeight(1, 0.0f);
     }
 
     public void EquipWeapon(Weapon weapon)
@@ -48,5 +56,14 @@ public class Pawn : MonoBehaviour
         weapon.transform.localPosition = attachmentPoint.transform.localPosition;
         weapon.transform.localRotation = attachmentPoint.transform.localRotation;
 
+    }
+
+    public void Unequip()
+    {
+        if (weapon)
+        {
+            DestroyImmediate(weapon, true);
+            weapon = null;
+        }
     }
 }
