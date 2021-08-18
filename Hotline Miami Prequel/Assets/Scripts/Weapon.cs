@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
+    private WeaponAnimationType animationType = WeaponAnimationType.None;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +17,10 @@ public class Weapon : MonoBehaviour
         
     }
 
-    
+    public enum WeaponAnimationType
+    {
+        None = 0,
+        Rifle = 1,
+        Handgun = 2
+    }
 }
