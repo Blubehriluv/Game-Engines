@@ -110,8 +110,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c69d9cdfdb4c6646a9e1661de08c37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2452965867231820467, guid: 33e84da2b43132a49b4b5188144c487a,
+  player: {fileID: 0}
+  projectilePrefab: {fileID: 3360304110311710363, guid: 5fd104178a2a3cb4481735f4e6ca1fae,
     type: 3}
+  place: {fileID: 0}
+  placeToSpawn: {fileID: 0}
+  barrel: {fileID: 0}
+  timeNextShotIsReady: 0
+  shotsPerMinute: 120
 --- !u!65 &464568706
 BoxCollider:
   m_ObjectHideFlags: 0

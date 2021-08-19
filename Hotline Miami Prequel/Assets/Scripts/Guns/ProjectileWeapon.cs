@@ -4,28 +4,71 @@ using UnityEngine;
 
 public class ProjectileWeapon : MonoBehaviour
 {
+    [SerializeField] Pawn player;
     bool triggerPulled;
     public Projectile projectilePrefab;
-    private Transform barrel;
+    public GameObject place;
+    [SerializeField] private Transform placeToSpawn;
+    public Transform barrel;
     private float Damage;
-    private float muzzleVelocity = 200;
+    private bool hasGun = false;
+    [SerializeField] private float timeNextShotIsReady;
+    [SerializeField] private float shotsPerMinute;
+
+    private void Awake()
+    {
+        timeNextShotIsReady = Time.time;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         barrel = gameObject.GetComponent<Transform>();
+        placeToSpawn = place.GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        hasGun = player.GetGunStatus();
+        if (hasGun)
         {
-            Debug.Log("FIRE");
-            Projectile projectile = Instantiate(projectilePrefab) as Projectile;
-            projectile.Damage = Damage;
-            projectile.rb.AddRelativeForce(Vector3.forward * muzzleVelocity, ForceMode.VelocityChange);
+            if (Time.time > timeNextShotIsReady)
+            {
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    Debug.Log("FIRE");
+                    Projectile projectile = Instantiate(projectilePrefab, placeToSpawn.position, barrel.rotation) as Projectile;
+                    projectile.Damage = Damage;
+                    timeNextShotIsReady += 60f / shotsPerMinute;
+                }
+            }
+            else if (Time.time > timeNextShotIsReady)
+            {
+                timeNextShotIsReady = Time.time;
+            }
+        }
+    }
 
+    void GoodForBot()
+    {
+        if (hasGun)
+        {
+            string textForMe = "";
+            if (textForMe == "Has player in sights")
+            {
+                if (Time.time > timeNextShotIsReady)
+                {
+                    Debug.Log("FIRE");
+                    Projectile projectile = Instantiate(projectilePrefab, placeToSpawn.position, barrel.rotation) as Projectile;
+                    projectile.Damage = Damage;
+                    timeNextShotIsReady += 60f / shotsPerMinute;
+                }
+                else if (Time.time > timeNextShotIsReady)
+                {
+                    timeNextShotIsReady = Time.time;
+                }
+            }
         }
     }
 }

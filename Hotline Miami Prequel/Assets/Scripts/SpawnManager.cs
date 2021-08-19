@@ -5,8 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject player;
-    //public Pistol pistol;
-    public Rifle rifle;
+    public GameObject enemy;
+    public GameObject pistol;
+    public GameObject rifle;
     void Start()
     {
         

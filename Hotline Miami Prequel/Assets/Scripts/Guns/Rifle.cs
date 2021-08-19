@@ -7,6 +7,7 @@ public class Rifle : Weapon
     private Rifle thisRifle;
     private WeaponAnimationType animationType;
     bool isEntered = false;
+    bool hasGun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +24,21 @@ public class Rifle : Weapon
 
     public void OnTriggerEnter(Collider other)
     {
-        if (isEntered == false)
+        hasGun = other.GetComponent<Pawn>().GetGunStatus();
+        if (hasGun == true)
         {
-            isEntered = true;
-            //other.GetComponent<Pawn>().AnimChange(animationType);
-            other.GetComponent<Pawn>().EquipWeapon(thisRifle, animationType);
-            DestroyRifle();
+
         }
+        else
+        {
+            if (isEntered == false)
+            {
+                isEntered = true;
+                //other.GetComponent<Pawn>().AnimChange(animationType);
+                other.GetComponent<Pawn>().EquipWeapon(thisRifle, animationType);
+                DestroyRifle();
+            }
+        } 
     }
 
     public void DestroyRifle()

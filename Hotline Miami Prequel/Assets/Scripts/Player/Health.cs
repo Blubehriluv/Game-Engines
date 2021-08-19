@@ -73,6 +73,7 @@ public class Health : MonoBehaviour
             {
                 Debug.Log("The player is dead.");
                 currentHealth = 0;
+                OnDie.Invoke(); 
                 Die();
             }
             else

@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: -8107493352182733864}
   - component: {fileID: 9209685742912017569}
   - component: {fileID: 7567174330213512197}
+  - component: {fileID: -8451019738207411069}
   m_Layer: 0
   m_Name: M1911
   m_TagString: Untagged
@@ -279,6 +280,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8451019738207411069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694449805434718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c69d9cdfdb4c6646a9e1661de08c37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  projectilePrefab: {fileID: 3360304110311710363, guid: 5fd104178a2a3cb4481735f4e6ca1fae,
+    type: 3}
+  place: {fileID: 0}
+  placeToSpawn: {fileID: 0}
+  barrel: {fileID: 0}
+  timeNextShotIsReady: 0
+  shotsPerMinute: 0
 --- !u!1 &1748277932983872
 GameObject:
   m_ObjectHideFlags: 0

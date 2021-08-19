@@ -11,12 +11,14 @@ public class Pawn : MonoBehaviour
     public GameObject soundsHolder;
     public AudioSource unequipSound;
     public AudioSource equipSound;
+    private bool hasGun;
     Animator anim;
 
     void Start()
     {
         sounds = soundsHolder.GetComponents<AudioSource>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -24,8 +26,20 @@ public class Pawn : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            AnimChange(Weapon.WeaponAnimationType.None);
+            if (weapon != null)
+            {
+                AnimChange(Weapon.WeaponAnimationType.None);
+            }
+            else
+            {
+
+            }
         }
+    }
+
+    public bool GetGunStatus()
+    {
+        return hasGun;
     }
 
     public void AnimChange(Weapon.WeaponAnimationType WeaponType)
@@ -38,18 +52,21 @@ public class Pawn : MonoBehaviour
             anim.SetLayerWeight(1, 0.0f);
             anim.SetLayerWeight(2, 0.0f);
             unequipSound.Play();
+            hasGun = false;
         }
         else if (WeaponType == Weapon.WeaponAnimationType.Handgun)
         {
             anim.SetLayerWeight(1, 1.0f);
             anim.SetLayerWeight(2, 0.0f);
             equipSound.Play();
+            hasGun = true;
         }
         else if (WeaponType == Weapon.WeaponAnimationType.Rifle)
         {
             anim.SetLayerWeight(2, 1.0f);
             anim.SetLayerWeight(1, 0.0f);
             equipSound.Play();
+            hasGun = true;
         }
     }
 
