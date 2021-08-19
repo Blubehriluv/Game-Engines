@@ -13,7 +13,6 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         sound = GetComponent<AudioSource>();
-        //sound.Play();
         Rigidbody = gameObject.GetComponent<Rigidbody>();
         Rigidbody.AddRelativeForce(Vector3.back * muzzleVelocity, ForceMode.VelocityChange);
         DestroySelf();

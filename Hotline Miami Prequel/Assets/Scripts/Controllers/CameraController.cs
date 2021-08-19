@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        
+        playerCamera = FindObjectOfType<Camera>();
     }
 
     void Update()

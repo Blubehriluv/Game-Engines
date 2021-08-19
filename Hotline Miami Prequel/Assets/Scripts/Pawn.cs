@@ -18,7 +18,7 @@ public class Pawn : MonoBehaviour
     {
         sounds = soundsHolder.GetComponents<AudioSource>();
         anim = GetComponent<Animator>();
-        
+        //Transform tf = new Transform()
     }
 
     // Update is called once per frame
@@ -72,7 +72,7 @@ public class Pawn : MonoBehaviour
 
     public void EquipWeapon(Weapon weapon, Weapon.WeaponAnimationType weaponTypeHolder)
     {
-        
+        weapon.gameObject.layer = gameObject.layer;
         weapon = Instantiate(weapon);        
         weapon.transform.SetParent(gameObject.transform);
         if (weaponTypeHolder == Weapon.WeaponAnimationType.Rifle)

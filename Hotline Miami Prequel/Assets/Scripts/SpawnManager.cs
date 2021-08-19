@@ -18,4 +18,14 @@ public class SpawnManager : MonoBehaviour
     {
         
     }
+
+    public void SpawnPlayer()
+    {
+        Instantiate(player);
+    }
+
+    public void SpawnEnemy()
+    {
+        Instantiate(enemy);
+    }
 }

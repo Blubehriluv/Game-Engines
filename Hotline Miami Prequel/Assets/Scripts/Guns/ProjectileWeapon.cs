@@ -25,6 +25,7 @@ public class ProjectileWeapon : MonoBehaviour
     {
         barrel = gameObject.GetComponent<Transform>();
         placeToSpawn = place.GetComponent<Transform>();
+        projectilePrefab.gameObject.layer = gameObject.layer;
     }
 
     // Update is called once per frame
@@ -43,10 +44,11 @@ public class ProjectileWeapon : MonoBehaviour
                     timeNextShotIsReady += 60f / shotsPerMinute;
                 }
             }
-            else if (Time.time > timeNextShotIsReady)
-            {
-                timeNextShotIsReady = Time.time;
-            }
+            
+        }
+        else if (Time.time > timeNextShotIsReady)
+        {
+            timeNextShotIsReady = Time.time;
         }
     }
 

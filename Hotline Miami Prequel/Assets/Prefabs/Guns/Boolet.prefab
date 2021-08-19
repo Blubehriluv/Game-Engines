@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3360304110311710363}
   - component: {fileID: 2646072885000743541}
   - component: {fileID: 424651981218220328}
+  - component: {fileID: 3732114125388290572}
   m_Layer: 0
   m_Name: Boolet
   m_TagString: Untagged
@@ -161,6 +162,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3732114125388290572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436597707300554813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2263267830745853664
 PrefabInstance:
   m_ObjectHideFlags: 0
