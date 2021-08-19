@@ -68,20 +68,20 @@
     <Compile Include="Assets\Scripts\Controllers\AIController.cs" />
     <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerAnimationController.cs" />
-    <Compile Include="Assets\Scripts\DodgeMove.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Handgun.cs" />
+    <Compile Include="Assets\Scripts\Guns\Handgun.cs" />
+    <Compile Include="Assets\Scripts\Guns\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Guns\ProjectileWeapon.cs" />
+    <Compile Include="Assets\Scripts\Guns\Rifle.cs" />
+    <Compile Include="Assets\Scripts\Guns\Weapon.cs" />
     <Compile Include="Assets\Scripts\HealItem.cs" />
     <Compile Include="Assets\Scripts\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\StaminaTest.cs" />
-    <Compile Include="Assets\Scripts\Rifle.cs" />
-    <Compile Include="Assets\Scripts\Shifting.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
-    <Compile Include="Assets\Scripts\Weapon.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>P:/Github/Game-Engines/Hotline Miami Prequel/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

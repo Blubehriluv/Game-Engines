@@ -16,7 +16,7 @@ public class BobberDeleter : MonoBehaviour
     {
         if (objectHolder == null)
         {
-            Debug.Log("its empty");
+            Debug.Log("its empty"); 
             Destroy(gameObject);
         }
     }
