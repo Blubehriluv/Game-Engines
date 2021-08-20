@@ -9,6 +9,7 @@ public class Rifle_al : Weapon
     {
         // TODO: Shoot one bullet
         // specific shoot sound
+
     }
     public override void OnTriggerHold()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileWeapon : MonoBehaviour
 {
-    [SerializeField] Pawn player;
+    [SerializeField] Pawn_al player;
     bool triggerPulled;
     public Projectile projectilePrefab;
     public GameObject place;
@@ -31,14 +31,14 @@ public class ProjectileWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hasGun = player.GetGunStatus();
+        hasGun = player.HasAGgun();
         if (hasGun)
         {
             if (Time.time > timeNextShotIsReady)
             {
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    Debug.Log("FIRE");
+                    Debug.Log("FIRE");  
                     Projectile projectile = Instantiate(projectilePrefab, placeToSpawn.position, barrel.rotation) as Projectile;
                     projectile.Damage = Damage;
                     timeNextShotIsReady += 60f / shotsPerMinute;
