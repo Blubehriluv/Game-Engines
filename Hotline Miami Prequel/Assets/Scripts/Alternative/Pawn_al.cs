@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This manages the Pawn's behavior when moving around ingame, setting the camera, and interacting with weapons.
+/// </summary>
 public class Pawn_al : MonoBehaviour
 {
-    private Animator anim;
-    public float speed = 5;
-    public float turnSpeed = 180;
-    public Camera playerCamera;
-    public Weapon heldWeapon;
-    private AudioSource[] sounds;
-    [SerializeField] private Transform hand;
-    [SerializeField] private GameObject soundsHolder;
-    private AudioSource unequipSound;
-    private AudioSource equipSound;
-    [SerializeField] private Rifle_al rifleHolder;
-    [SerializeField] private Pistol_al pistolHolder;
-    //private Pistol_al pistol;
-    [SerializeField] private float distance;
-    private bool hasAWeapon;
-    
+    [Header("General Parameters")]
+    [SerializeField, Tooltip("The animator located on the 'Player' for altering layer weight/visibilty")] Animator anim;
+    [SerializeField, Tooltip("Grabs the in scene Main Camera")] Camera playerCamera;
+    [SerializeField, Tooltip("Controls how quickly the Pawn can spin around to keep up with the mouse cursor.")] float turnSpeed = 180;
+    [SerializeField, Tooltip("How far away the camera is from the Pawn")] float distance;
 
-    // Start is called before the first frame update
+    [Header("Weapon Reference Variables")]
+    [SerializeField, Tooltip("For controlling the Rifle gun.")] Rifle_al rifleHolder;
+    [SerializeField, Tooltip("For controlling the Pistol gun.")] Pistol_al pistolHolder;
+    [SerializeField, Tooltip("For manipulating whatever weapon the Pawn is holding.")] Weapon heldWeapon;
+    [SerializeField, Tooltip("Helps to pass information about the Pawn currently having a weapon.")] bool hasAWeapon;
+
+    [Header("Audio Parameters")]
+    [SerializeField, Tooltip("Initial hold for manipulating the Audio Sources.")] GameObject soundsHolder;
+    [SerializeField, Tooltip("The held AudioSources are placed into this array.")] AudioSource[] sounds;
+    [SerializeField, Tooltip("The sound to play when dropping a gun.")] AudioSource unequipSound;
+    [SerializeField, Tooltip("The sound to play when equipping a gun.")] AudioSource equipSound;
+
+
     void Start()
     {
-
-        anim = GetComponent<Animator>();
-        hasAWeapon = false;
-        sounds = soundsHolder.GetComponents<AudioSource>();
+        anim = GetComponent<Animator>();                        // Grabs the animator
+        hasAWeapon = false;                                     // Begins the player with no weapon
+        sounds = soundsHolder.GetComponents<AudioSource>();     // Sends available sounds to array
         unequipSound = sounds[0];
         equipSound = sounds[1];
     }
@@ -67,11 +70,19 @@ public class Pawn_al : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Use this getter in other scripts to signify when a weapon is being held already.
+    /// This can prevent taking too many guns or activating sounds prematurely.
+    /// </summary>
+    /// <returns>Will return whether or not the player has a gun on them.</returns>
     public bool HasAGgun()
     {
         return hasAWeapon;
     }
 
+    /// <summary>
+    /// Set the rifle animation and equip the weapon.
+    /// </summary>
     public void SetRifle()
     {
         anim.SetLayerWeight(2, 1.0f);
@@ -79,6 +90,9 @@ public class Pawn_al : MonoBehaviour
         EquipWeapon(Weapon.WeaponAnimationType.Rifle);
     }
 
+    /// <summary>
+    /// Set the pistol animation and equip the weapon.
+    /// </summary>
     public void SetPistol()
     {
         anim.SetLayerWeight(1, 1.0f);
@@ -86,6 +100,11 @@ public class Pawn_al : MonoBehaviour
         EquipWeapon(Weapon.WeaponAnimationType.Handgun);
     }
 
+    /// <summary>
+    /// After triggering a WeaponPickup, this function will call and enable the weapon for the player.
+    /// It plays sounds here and sets the currently held weapon.
+    /// </summary>
+    /// <param name="WeaponType">The weapon type helps clearly state if the player has a Handgun, Rifle, or Nothing(None)</param>
     public void EquipWeapon (Weapon.WeaponAnimationType WeaponType)
     {
         hasAWeapon = true;
@@ -104,16 +123,6 @@ public class Pawn_al : MonoBehaviour
             equipSound.Play();
         }
     }
-
-    private void RotateTowards(Vector3 lookAtPoint)
-    {
-        // Acquires rotation to be used for looking where we want.
-        Quaternion goalRotation = Quaternion.LookRotation(lookAtPoint - transform.position, Vector3.up);
-
-        // Will rotate less than the given TurnSpeed towards the goal.
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, turnSpeed * Time.deltaTime * 2);
-    }
-
     public void RotateToMousePointer()
     {
         // Acquire the plane
@@ -133,6 +142,19 @@ public class Pawn_al : MonoBehaviour
         // Debug.Log(relative);
     }
 
+    private void RotateTowards(Vector3 lookAtPoint)
+    {
+        // Acquires rotation to be used for looking where we want.
+        Quaternion goalRotation = Quaternion.LookRotation(lookAtPoint - transform.position, Vector3.up);
+
+        // Will rotate less than the given TurnSpeed towards the goal.
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, turnSpeed * Time.deltaTime * 2);
+    }
+
+
+    /// <summary>
+    /// Forces the player to drop their weapon and allows them to pick up another.
+    /// </summary>
     public void DropWeapon()
     {
         if (heldWeapon)
