@@ -70,6 +70,7 @@ public class Pawn : MonoBehaviour
         }
     }
 
+
     public void EquipWeapon(Weapon weapon, Weapon.WeaponAnimationType weaponTypeHolder)
     {
         weapon.gameObject.layer = gameObject.layer;

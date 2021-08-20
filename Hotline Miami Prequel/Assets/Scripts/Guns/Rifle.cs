@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class Rifle : Weapon
 {
     private Rifle thisRifle;
@@ -46,3 +46,4 @@ public class Rifle : Weapon
         Destroy(transform.parent.gameObject);
     }
 }
+*/

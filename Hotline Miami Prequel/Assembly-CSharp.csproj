@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Alternative\Pawn_al.cs" />
+    <Compile Include="Assets\Scripts\Alternative\Pistol_al.cs" />
+    <Compile Include="Assets\Scripts\Alternative\Rifle_al.cs" />
     <Compile Include="Assets\Scripts\BobberDeleter.cs" />
     <Compile Include="Assets\Scripts\Controllers\AIController.cs" />
     <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
@@ -74,11 +77,11 @@
     <Compile Include="Assets\Scripts\Guns\ProjectileWeapon.cs" />
     <Compile Include="Assets\Scripts\Guns\Rifle.cs" />
     <Compile Include="Assets\Scripts\Guns\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Guns\WeaponPickup.cs" />
     <Compile Include="Assets\Scripts\HealItem.cs" />
     <Compile Include="Assets\Scripts\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\StaminaTest.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />

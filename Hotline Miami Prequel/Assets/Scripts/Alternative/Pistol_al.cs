@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Handgun : Weapon
+public class Pistol_al : Weapon
 {
     public void Shoot()
     {
-
+        // TODO: Shoot one bullet
+        // specific shoot sound
     }
     public override void OnTriggerHold()
     {
 
+    }
+
+    public void Reload()
+    {
+        // TODO: Reload the gun for ammo cache.
     }
 
     public override void OnTriggerPull()
@@ -27,6 +33,7 @@ public class Handgun : Weapon
     public override void Start()
     {
         base.Start();
+
     }
 
     // Update is called once per frame

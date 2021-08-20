@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField, Tooltip("")] float enemyBulletDamage;
     [SerializeField, Tooltip("")] float generalDamage;
 
+
     public UnityEvent OnDie;
 
     // Start is called before the first frame update
