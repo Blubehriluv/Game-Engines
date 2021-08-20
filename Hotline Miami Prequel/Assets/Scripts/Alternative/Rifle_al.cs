@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rifle_al : Weapon
 {
+    private AudioSource sound;
     public void Shoot()
     {
         // TODO: Shoot one bullet
@@ -33,7 +34,7 @@ public class Rifle_al : Weapon
     public override void Start()
     {
         base.Start();
-
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +42,4 @@ public class Rifle_al : Weapon
     {
         base.Update();
     }
-
-
 }

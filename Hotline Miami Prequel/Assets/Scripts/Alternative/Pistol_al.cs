@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pistol_al : Weapon
 {
+
     public void Shoot()
     {
         // TODO: Shoot one bullet

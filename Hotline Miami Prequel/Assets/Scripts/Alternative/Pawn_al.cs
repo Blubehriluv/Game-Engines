@@ -18,6 +18,7 @@ public class Pawn_al : MonoBehaviour
     [SerializeField] private Pistol_al pistolHolder;
     //private Pistol_al pistol;
     [SerializeField] private float distance;
+    private bool hasAWeapon;
     
 
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public class Pawn_al : MonoBehaviour
     {
 
         anim = GetComponent<Animator>();
-        
+        hasAWeapon = false;
         sounds = soundsHolder.GetComponents<AudioSource>();
         unequipSound = sounds[0];
         equipSound = sounds[1];
@@ -60,6 +61,15 @@ public class Pawn_al : MonoBehaviour
         {
             // weapon.AltFirePull();
         }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            DropWeapon();
+        }
+    }
+
+    public bool HasAGgun()
+    {
+        return hasAWeapon;
     }
 
     public void SetRifle()
@@ -73,19 +83,23 @@ public class Pawn_al : MonoBehaviour
     {
         anim.SetLayerWeight(1, 1.0f);
         anim.SetLayerWeight(2, 0.0f);
+        EquipWeapon(Weapon.WeaponAnimationType.Handgun);
     }
 
     public void EquipWeapon (Weapon.WeaponAnimationType WeaponType)
     {
+        hasAWeapon = true;
         if (WeaponType == Weapon.WeaponAnimationType.Rifle)
         {
             rifleHolder.gameObject.SetActive(true);
+            heldWeapon = rifleHolder;
 
             equipSound.Play();
         }
         else if (WeaponType == Weapon.WeaponAnimationType.Handgun)
         {
             pistolHolder.gameObject.SetActive(true);
+            heldWeapon = pistolHolder;
 
             equipSound.Play();
         }
@@ -121,8 +135,15 @@ public class Pawn_al : MonoBehaviour
 
     public void DropWeapon()
     {
-        anim.SetLayerWeight(1, 0.0f);
-        anim.SetLayerWeight(2, 0.0f);
-        unequipSound.Play();
+        if (heldWeapon)
+        {
+            hasAWeapon = false;
+            rifleHolder.gameObject.SetActive(false);
+            pistolHolder.gameObject.SetActive(false);
+            anim.SetLayerWeight(1, 0.0f);
+            anim.SetLayerWeight(2, 0.0f);
+            unequipSound.Play();
+            heldWeapon = null;
+        }
     }
 }

@@ -22,29 +22,37 @@ public class WeaponPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (daMesh.name == "M4_8")
+        if (!other.gameObject.GetComponent<Pawn_al>().HasAGgun())
         {
-            Debug.Log("Picked up rifle.");
-            other.gameObject.GetComponent<Pawn_al>().SetRifle();
-            //other.gameObject.GetComponent<Pawn_al>().EquipWeapon(rifle);
-            OnDestroy();
+            if (daMesh.name == "M4_8")
+            {
+                Debug.Log("Picked up rifle.");
+                other.gameObject.GetComponent<Pawn_al>().SetRifle();
+                //other.gameObject.GetComponent<Pawn_al>().EquipWeapon(rifle);
+                OnDestroy();
 
-        }
-        else if (daMesh.name == "M1911")
-        {
-            Debug.Log("Picked up pistol.");
-            other.gameObject.GetComponent<Pawn_al>().SetPistol();
-            OnDestroy();
+            }
+            else if (daMesh.name == "M1911")
+            {
+                Debug.Log("Picked up pistol.");
+                other.gameObject.GetComponent<Pawn_al>().SetPistol();
+                OnDestroy();
+            }
+            else
+            {
+                Debug.Log("idk what the name is.");
+            }
         }
         else
         {
-            Debug.Log("idk what the name is.");
+            Debug.Log("Player already has a weapon.");
         }
+       
         //other.gameObject.GetComponent<Pawn>().
     }
 
     private void OnDestroy()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }
