@@ -16,7 +16,6 @@ public class Projectile : MonoBehaviour
         Rigidbody = gameObject.GetComponent<Rigidbody>();
         Rigidbody.AddRelativeForce(Vector3.back * muzzleVelocity, ForceMode.VelocityChange);
         DestroySelf();
-        
     }
 
     // Update is called once per frame

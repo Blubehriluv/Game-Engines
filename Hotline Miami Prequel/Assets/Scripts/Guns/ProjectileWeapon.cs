@@ -36,7 +36,7 @@ public class ProjectileWeapon : MonoBehaviour
         {
             if (Time.time > timeNextShotIsReady)
             {
-                if (Input.GetKey(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     Debug.Log("FIRE");  
                     Projectile projectile = Instantiate(projectilePrefab, placeToSpawn.position, barrel.rotation) as Projectile;
@@ -44,12 +44,16 @@ public class ProjectileWeapon : MonoBehaviour
                     timeNextShotIsReady += 60f / shotsPerMinute;
                 }
             }
-            
+            else if (Time.time > timeNextShotIsReady)
+            {
+                timeNextShotIsReady = Time.time;
+            }  
         }
-        else if (Time.time > timeNextShotIsReady)
+        else if (!hasGun)
         {
-            timeNextShotIsReady = Time.time;
+            Debug.Log("Does not have a gun.");
         }
+        
     }
 
     void GoodForBot()

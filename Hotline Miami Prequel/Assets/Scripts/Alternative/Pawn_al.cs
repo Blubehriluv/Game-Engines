@@ -31,8 +31,8 @@ public class Pawn_al : MonoBehaviour
         anim = GetComponent<Animator>();                        // Grabs the animator
         hasAWeapon = false;                                     // Begins the player with no weapon
         sounds = soundsHolder.GetComponents<AudioSource>();     // Sends available sounds to array
-        unequipSound = sounds[0];
-        equipSound = sounds[1];
+        unequipSound = sounds[1];
+        equipSound = sounds[0];
     }
 
     // Update is called once per frame
@@ -52,13 +52,29 @@ public class Pawn_al : MonoBehaviour
         // For handling trigger events
         if (Input.GetButtonDown("Fire1"))
         {
-            heldWeapon.OnTriggerPull();
-            heldWeapon.OnMainActionStart.Invoke();
+            if (hasAWeapon)
+            {
+                heldWeapon.OnTriggerPull();
+                heldWeapon.OnMainActionStart.Invoke();
+            }
+            else
+            {
+
+            }
+            
             // Add the shoot function
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            heldWeapon.OnTriggerRelease();
+            if (hasAWeapon)
+            {
+                heldWeapon.OnTriggerRelease();
+                heldWeapon.OnMainActionStart.Invoke();
+            }
+            else
+            {
+
+            }
         }
         if (Input.GetButtonDown("Fire2"))
         {

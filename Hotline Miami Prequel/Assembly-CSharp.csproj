@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Guns\Weapon.cs" />
     <Compile Include="Assets\Scripts\Guns\WeaponPickup.cs" />
     <Compile Include="Assets\Scripts\HealItem.cs" />
+    <Compile Include="Assets\Scripts\HealthUI.cs" />
     <Compile Include="Assets\Scripts\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\MainMenuManage.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />

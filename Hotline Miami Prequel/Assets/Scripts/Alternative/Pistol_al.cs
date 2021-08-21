@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Pistol_al : Weapon
 {
-
+    private AudioSource sound;
     public void Shoot()
     {
-        // TODO: Shoot one bullet
-        // specific shoot sound
+
+
     }
     public override void OnTriggerHold()
     {
@@ -34,7 +34,7 @@ public class Pistol_al : Weapon
     public override void Start()
     {
         base.Start();
-
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +42,4 @@ public class Pistol_al : Weapon
     {
         base.Update();
     }
-
-
 }

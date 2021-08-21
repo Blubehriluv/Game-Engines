@@ -7,8 +7,7 @@ public class Rifle_al : Weapon
     private AudioSource sound;
     public void Shoot()
     {
-        // TODO: Shoot one bullet
-        // specific shoot sound
+        
 
     }
     public override void OnTriggerHold()
